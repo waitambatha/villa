@@ -1,12 +1,33 @@
 {
-    "builds": [ {
-      "src": "elevate/wsgi.py",
+  "builds": [
+    {
+      "src": "villa/wsgi.py",
       "use": "@vercel/python",
-      "config": {"maxlambdasize": "15mb" , "runtime": "python3.9" }
-    }], 
+      "config": { 
+        "maxLambdaSize": "15mb", 
+        "runtime": "python3.9"
+      }
+    },
+    {
+      "src": "staticfiles/",
+      "use": "@vercel/static"
+    }
+  ],
   "routes": [
     {
+      "src": "/static/(.*)",
+      "dest": "/static/$1"
+    },
+    {
       "src": "/(.*)",
-      "dest": "elevate/wsgi.py"
-    }]
+      "dest": "villa/wsgi.py"
+    }
+  ],
+  "env": {
+    "DJANGO_SETTINGS_MODULE": "villa.settings",
+    "PYTHONPATH": "/var/task",
+    "ALLOWED_HOSTS": ".vercel.app",
+    "SECRET_KEY": "django-insecure-0!8u=s#^@5_pzp0e7ov=*@4a&fzvx00^_y-eoms6w!6@n=#afq",
+    "DEBUG": "False"
+  }
 }
