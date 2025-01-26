@@ -4,3 +4,4 @@ sqlparse==0.5.3
 gunicorn
 pillow
 psycopg2-binary
+whitenoise==6.4.0
