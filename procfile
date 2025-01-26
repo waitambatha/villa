@@ -1,2 +1,1 @@
-release: python manage.py collectstatic --noinput
-web: villa.wsgi --log-file -
+web: gunicorn villa.wsgi --log-file -
